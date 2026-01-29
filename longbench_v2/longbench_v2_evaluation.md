@@ -25,8 +25,8 @@ LongBench-v2 is a benchmark designed to assess the ability of Large Language Mod
 ### Basic Usage
 
 ```python
-from sglang.test.simple_eval_longbench_v2 import LongBenchV2Eval
-from sglang.test.simple_eval_common import ChatCompletionSampler
+from vibe_long_bench.simple_eval_longbench_v2 import LongBenchV2Eval
+from vibe_long_bench.simple_eval_common import ChatCompletionSampler
 
 # Initialize evaluator with HuggingFace dataset
 eval_obj = LongBenchV2Eval(
@@ -35,7 +35,7 @@ eval_obj = LongBenchV2Eval(
     num_threads=4
 )
 
-# Create sampler (pointing to your SGLang server)
+# Create sampler (pointing to your inference server)
 sampler = ChatCompletionSampler(
     base_url="http://localhost:30000/v1",
     model="your-model-name"

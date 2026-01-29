@@ -1,5 +1,5 @@
 # Adapted from https://github.com/openai/simple-evals/
-# NOTE: This file is copied verbatim from sglang's test utilities so the
+# NOTE: This file is copied verbatim out of the SGLang test utilities so the
 #       standalone LongBench-v2 tool can reuse the exact same helpers.
 
 import os

@@ -262,10 +262,10 @@ def generate_validation_report() -> None:
 
     print("\n🚀 USAGE EXAMPLES:")
     print("  # Command line usage:")
-    print("  python -m sglang.test.run_eval --eval-name longbench_v2 --port 30000")
+    print("  python longbench_v2/test_longbench_v2_eval.py")
     print("  ")
     print("  # Python API usage:")
-    print("  from sglang.test.simple_eval_longbench_v2 import LongBenchV2Eval")
+    print("  from vibe_long_bench.simple_eval_longbench_v2 import LongBenchV2Eval")
     print("  eval_obj = LongBenchV2Eval(data_source='THUDM/LongBench-v2')")
     print("  result = eval_obj(sampler)")
 

@@ -9,7 +9,7 @@ import os
 import tempfile
 from typing import Any, Dict, List
 
-from sglang.test.simple_eval_longbench_v2 import (
+from vibe_long_bench.simple_eval_longbench_v2 import (
     LongBenchV2Eval,
     extract_longbench_v2_answer,
     format_longbench_v2_question,

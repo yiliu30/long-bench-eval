@@ -1,5 +1,5 @@
-from sglang.test.simple_eval_longbench_v2 import LongBenchV2Eval
-from sglang.test.simple_eval_common import ChatCompletionSampler
+from vibe_long_bench.simple_eval_longbench_v2 import LongBenchV2Eval
+from vibe_long_bench.simple_eval_common import ChatCompletionSampler
 
 # Initialize evaluator with HuggingFace dataset
 eval_obj = LongBenchV2Eval(
@@ -9,7 +9,7 @@ eval_obj = LongBenchV2Eval(
     model="/storage/yiliu7/Qwen/Qwen3-8B/"
 )
 
-# Create sampler (pointing to your SGLang server)
+# Create sampler (pointing to your inference server)
 sampler = ChatCompletionSampler(
     base_url="http://localhost:30000/v1",
     model="/storage/yiliu7/Qwen/Qwen3-8B/"
