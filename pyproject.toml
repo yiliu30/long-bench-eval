@@ -29,6 +29,9 @@ dependencies = [
     "transformers>=4.40.0",
 ]
 
+[project.scripts]
+longbench = "long_bench_eval.cli:main"
+
 [project.urls]
 Homepage = "https://github.com/yiliu30/long-bench-eval"
 Repository = "https://github.com/yiliu30/long-bench-eval"
