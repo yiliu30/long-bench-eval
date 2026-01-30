@@ -1,6 +1,6 @@
 # long-bench-eval
 
-Standalone extraction of the LongBench-v2 evaluation helper that originally lived under `sglang.test`. This repo keeps the original structure and logic so it can drop into existing evaluation workflows with minimal friction.
+This repository packages the LongBench-v2 evaluation helper that was originally part of `sglang.test`, keeping the same structure so you can reuse the official evaluation flow with minimal effort. The implementation remains faithful to the SGLang helper while standing on the LongBench-v2 benchmark introduced in [LongBench v2: Towards Deeper Understanding and Reasoning on Realistic Long-Context Multitasks](https://arxiv.org/abs/2412.15204).
 
 ## Layout
 
