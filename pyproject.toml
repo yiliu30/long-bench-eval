@@ -1,0 +1,39 @@
+[build-system]
+requires = ["setuptools>=69.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "long-bench-eval"
+version = "0.1.0"
+description = "Standalone LongBench-v2 evaluation helpers adapted from SGLang"
+readme = "README.md"
+license = {text = "Apache-2.0"}
+requires-python = ">=3.9"
+authors = [
+    {name = "Yi Liu"},
+]
+keywords = [
+    "longbench",
+    "evaluation",
+    "llm",
+    "sglang",
+]
+dependencies = [
+    "datasets>=2.14.0",
+    "httpx>=0.26.0",
+    "jinja2>=3.1.0",
+    "numpy>=1.24.0",
+    "openai>=1.6.0",
+    "requests>=2.31.0",
+    "tqdm>=4.66.0",
+    "transformers>=4.40.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/yiliu30/long-bench-eval"
+Repository = "https://github.com/yiliu30/long-bench-eval"
+Issues = "https://github.com/yiliu30/long-bench-eval/issues"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["long_bench_eval*"]

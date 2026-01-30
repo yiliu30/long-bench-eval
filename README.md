@@ -13,13 +13,17 @@ long-bench-eval/
 │   └── simple_eval_longbench_v2.py
 ```
 
+## Installation
+
+Install straight from GitHub (or from PyPI once published):
+
+```bash
+pip install git+https://github.com/yiliu30/long-bench-eval
+```
+
 ## Usage
 
-1. Install the required Python packages (PyTorch/Transformers/Datasets/OpenAI stack) in your environment:
-   ```bash
-   pip install transformers datasets openai httpx jinja2 numpy requests tqdm
-   ```
-2. Import and run the evaluator in your own driver script (you need to provide a `SamplerBase` implementation, such as the included `ChatCompletionSampler`):
+1. Import and run the evaluator in your own driver script (you need to provide a `SamplerBase` implementation, such as the included `ChatCompletionSampler`):
    ```python
    from long_bench_eval.simple_eval_longbench_v2 import LongBenchV2Eval
    from long_bench_eval.simple_eval_common import ChatCompletionSampler
@@ -28,7 +32,7 @@ long-bench-eval/
    evaluator = LongBenchV2Eval(model="gpt-4o-mini")
    result = evaluator(sampler)
    ```
-3. Inspect `result.metrics` or generate an HTML report with `make_report(result)` from `simple_eval_common`.
+2. Inspect `result.metrics` or generate an HTML report with `make_report(result)` from `simple_eval_common`.
 
 ## Differences vs. the sglang version
 
