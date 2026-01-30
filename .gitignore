@@ -1,0 +1,5 @@
+.venv/
+.venv-uv/
+__pycache__/
+*.egg-info/
+scripts/key.json
