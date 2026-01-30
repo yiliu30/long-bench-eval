@@ -1,5 +1,7 @@
 # long-bench-eval
 
+> **Warning:** This is a vibe-coding project. Expect rough edges, rapid experimentation, and frequent changes without prior notice.
+
 This repository packages the LongBench-v2 evaluation helper that was originally part of `sglang.test`, keeping the same structure so you can reuse the official evaluation flow with minimal effort. The implementation remains faithful to the SGLang helper while standing on the LongBench-v2 benchmark introduced in [LongBench v2: Towards Deeper Understanding and Reasoning on Realistic Long-Context Multitasks](https://arxiv.org/abs/2412.15204).
 
 ## Layout
