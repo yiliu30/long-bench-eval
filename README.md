@@ -1,13 +1,13 @@
-# vibe-long-bench
+# long-bench-eval
 
 Standalone extraction of the LongBench-v2 evaluation helper that originally lived under `sglang.test`. This repo keeps the original structure and logic so it can drop into existing evaluation workflows with minimal friction.
 
 ## Layout
 
 ```
-vibe-long-bench/
+long-bench-eval/
 ├── README.md
-├── vibe_long_bench/
+├── long_bench_eval/
 │   ├── __init__.py
 │   ├── simple_eval_common.py
 │   └── simple_eval_longbench_v2.py
@@ -21,8 +21,8 @@ vibe-long-bench/
    ```
 2. Import and run the evaluator in your own driver script (you need to provide a `SamplerBase` implementation, such as the included `ChatCompletionSampler`):
    ```python
-   from vibe_long_bench.simple_eval_longbench_v2 import LongBenchV2Eval
-   from vibe_long_bench.simple_eval_common import ChatCompletionSampler
+   from long_bench_eval.simple_eval_longbench_v2 import LongBenchV2Eval
+   from long_bench_eval.simple_eval_common import ChatCompletionSampler
 
    sampler = ChatCompletionSampler(model="gpt-4o-mini")
    evaluator = LongBenchV2Eval(model="gpt-4o-mini")
@@ -32,6 +32,6 @@ vibe-long-bench/
 
 ## Differences vs. the sglang version
 
-- Module paths now live under `vibe_long_bench.*` instead of `sglang.test.*`.
+- Module paths now live under `long_bench_eval.*` instead of `sglang.test.*`.
 - Imports were updated accordingly; the evaluation logic and helper utilities remain unchanged.
 - Added this README to explain setup and highlight the only functional difference (module namespace).

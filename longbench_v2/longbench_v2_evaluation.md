@@ -25,8 +25,8 @@ LongBench-v2 is a benchmark designed to assess the ability of Large Language Mod
 ### Basic Usage
 
 ```python
-from vibe_long_bench.simple_eval_longbench_v2 import LongBenchV2Eval
-from vibe_long_bench.simple_eval_common import ChatCompletionSampler
+from long_bench_eval.simple_eval_longbench_v2 import LongBenchV2Eval
+from long_bench_eval.simple_eval_common import ChatCompletionSampler
 
 # Initialize evaluator with HuggingFace dataset
 eval_obj = LongBenchV2Eval(

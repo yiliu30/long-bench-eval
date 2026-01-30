@@ -17,8 +17,8 @@ from typing import Any, Dict, List, Optional
 
 from transformers import AutoTokenizer
 
-from vibe_long_bench import simple_eval_common as common
-from vibe_long_bench.simple_eval_common import (
+from long_bench_eval import simple_eval_common as common
+from long_bench_eval.simple_eval_common import (
     ANSWER_PATTERN_MULTICHOICE,
     HTML_JINJA,
     Eval,
