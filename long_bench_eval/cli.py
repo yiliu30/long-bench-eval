@@ -49,27 +49,22 @@ def parse_args(argv: Optional[Sequence[str]] = None) -> argparse.Namespace:
     )
     parser.add_argument(
         "--base-url",
-        default="https://api.deepseek.com",
+        default="http://localhost:30000/v1",
         help="OpenAI-compatible inference endpoint base URL.",
     )
     parser.add_argument(
         "--model",
-        dest="sampler_model",
+        dest="model",
         default="deepseek-chat",
         help="Remote model to query via ChatCompletionSampler.",
-    )
-    parser.add_argument(
-        "--tokenizer-model",
-        default="gpt2",
-        help="Tokenizer identifier used for context filtering.",
     )
     parser.add_argument(
         "--data-source",
         default="THUDM/LongBench-v2",
         help="HF dataset name or local JSON/CSV path for evaluation data.",
     )
-    parser.add_argument("--num-examples", type=int, default=5, help="Number of examples to evaluate.")
-    parser.add_argument("--num-threads", type=int, default=1, help="Thread pool size for evaluation.")
+    parser.add_argument("--num-examples", type=int, default=None, help="Number of examples to evaluate.")
+    parser.add_argument("--num-threads", type=int, default=512, help="Thread pool size for evaluation.")
     parser.add_argument(
         "--n-repeats",
         type=int,
@@ -98,7 +93,7 @@ def parse_args(argv: Optional[Sequence[str]] = None) -> argparse.Namespace:
     parser.add_argument("--temperature", type=float, default=0.0, help="Sampler temperature.")
     parser.add_argument(
         "--system-message",
-        default="You are a helpful assistant.",
+        default=None,
         help="System prompt forwarded to the sampler.",
     )
     parser.add_argument("--max-tokens", type=int, default=2048, help="Max completion tokens for each request.")
@@ -112,14 +107,14 @@ def main(argv: Optional[Sequence[str]] = None) -> None:
 
     sampler = ChatCompletionSampler(
         base_url=args.base_url,
-        model=args.sampler_model,
+        model=args.model,
         system_message=args.system_message,
         temperature=args.temperature,
         max_tokens=args.max_tokens,
     )
 
     evaluator = LongBenchV2Eval(
-        model=args.tokenizer_model,
+        model=args.model,
         data_source=args.data_source,
         num_examples=args.num_examples,
         num_threads=args.num_threads,
