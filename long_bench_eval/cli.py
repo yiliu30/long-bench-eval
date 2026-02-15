@@ -26,7 +26,7 @@ def _build_sampler_config(args: argparse.Namespace) -> Dict[str, Any]:
 def _build_eval_config(args: argparse.Namespace) -> Dict[str, Any]:
     return {
         "data_source": args.data_source,
-        "tokenizer_model": args.tokenizer_model,
+        "model": args.model,
         "num_examples": args.num_examples,
         "num_threads": args.num_threads,
         "n_repeats": args.n_repeats,
