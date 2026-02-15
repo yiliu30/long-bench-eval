@@ -16,7 +16,7 @@ DEFAULT_KEY_FILE = "scripts/key.json"
 def _build_sampler_config(args: argparse.Namespace) -> Dict[str, Any]:
     return {
         "base_url": args.base_url,
-        "model": args.sampler_model,
+        "model": args.model,
         "temperature": args.temperature,
         "max_tokens": args.max_tokens,
         "system_message": args.system_message,
@@ -50,7 +50,7 @@ def _ensure_default_artifacts(args: argparse.Namespace) -> None:
 
     root = Path(getattr(args, "artifacts_root", "artifacts") or "artifacts")
     timestamp = datetime.utcnow().strftime("%Y%m%d-%H%M%S")
-    model_slug = _slugify(args.sampler_model or "model")
+    model_slug = _slugify(args.model or "model")
     run_dir = root / f"{timestamp}_{model_slug}"
     run_dir.mkdir(parents=True, exist_ok=True)
 
