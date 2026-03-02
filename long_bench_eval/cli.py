@@ -198,11 +198,11 @@ def parse_args(argv: Optional[Sequence[str]] = None) -> argparse.Namespace:
         default=None,
         help="System prompt forwarded to the sampler.",
     )
-    parser.add_argument("--max-tokens", type=int, default=2048, help="Max completion tokens for each request.")
+    parser.add_argument("--max-tokens", type=int, default=4096, help="Max completion tokens for each request.")
     parser.add_argument(
         "--deterministic",
         action="store_true",
-        default=True,
+        default=False,
         help="Enable deterministic evaluation mode (sequential processing for reproducible results). Default: True.",
     )
     parser.add_argument(
