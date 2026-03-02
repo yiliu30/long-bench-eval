@@ -33,6 +33,7 @@ def _build_eval_config(args: argparse.Namespace) -> Dict[str, Any]:
         "categories": args.categories,
         "min_context_length": args.min_context_length,
         "max_context_length": args.max_context_length,
+        "deterministic": args.deterministic,
     }
 
 
@@ -199,6 +200,18 @@ def parse_args(argv: Optional[Sequence[str]] = None) -> argparse.Namespace:
     )
     parser.add_argument("--max-tokens", type=int, default=2048, help="Max completion tokens for each request.")
     parser.add_argument(
+        "--deterministic",
+        action="store_true",
+        default=True,
+        help="Enable deterministic evaluation mode (sequential processing for reproducible results). Default: True.",
+    )
+    parser.add_argument(
+        "--non-deterministic",
+        action="store_false",
+        dest="deterministic",
+        help="Disable deterministic mode to enable parallel processing for faster evaluation.",
+    )
+    parser.add_argument(
         "--artifacts-root",
         default="artifacts",
         help="Base directory for storing run artifacts (default: ./artifacts).",
@@ -246,6 +259,7 @@ def main(argv: Optional[Sequence[str]] = None) -> None:
         categories=args.categories,
         min_context_length=args.min_context_length,
         max_context_length=args.max_context_length,
+        deterministic=args.deterministic,
     )
 
     result = evaluator(sampler)

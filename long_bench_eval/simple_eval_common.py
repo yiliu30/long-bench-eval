@@ -320,11 +320,12 @@ def aggregate_results(
     )
 
 
-def map_with_progress(f: callable, xs: List[Any], num_threads: int):
+def map_with_progress(f: callable, xs: List[Any], num_threads: int, deterministic: bool = False):
     """
     Apply f to each element of xs, using a ThreadPool, and show progress.
+    When deterministic=True, use sequential processing for reproducible results.
     """
-    if os.getenv("debug"):
+    if deterministic or os.getenv("debug"):
         return list(map(f, tqdm(xs, total=len(xs))))
     else:
         with ThreadPool(min(num_threads, len(xs))) as pool:
