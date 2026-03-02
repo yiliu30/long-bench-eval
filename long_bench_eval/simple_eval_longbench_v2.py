@@ -123,6 +123,7 @@ class LongBenchV2Eval(Eval):
         categories: Optional[List[str]] = None,
         max_context_length: Optional[int] = None,
         min_context_length: Optional[int] = None,
+        deterministic: bool = False,
     ):
         """
         Initialize LongBench-v2 evaluation.
@@ -135,10 +136,14 @@ class LongBenchV2Eval(Eval):
             categories: List of task categories to include (None for all)
             max_context_length: Maximum context length in characters
             min_context_length: Minimum context length in characters
+            deterministic: Enable deterministic evaluation mode (sequential processing)
         """
-        self.tokenizer = AutoTokenizer.from_pretrained(model, trust_remote_code=True)
+        self.tokenizer = None
+        if model and (min_context_length is not None or max_context_length is not None):
+            self.tokenizer = AutoTokenizer.from_pretrained(model, trust_remote_code=True)
         self.min_context_length = min_context_length
         self.max_context_length = max_context_length
+        self.deterministic = deterministic
         # Load dataset based on data source type
         examples = self._load_dataset(data_source)
 
@@ -280,6 +285,8 @@ class LongBenchV2Eval(Eval):
             formatted_question = format_longbench_v2_question(row)
 
             if self.min_context_length or self.max_context_length:
+                if self.tokenizer is None:
+                    raise ValueError("Model must be provided for context length filtering")
                 if not self._check_context_length(
                     formatted_question,
                     self.tokenizer,
@@ -343,5 +350,5 @@ class LongBenchV2Eval(Eval):
             )
 
         # Run evaluation with progress tracking
-        results = common.map_with_progress(fn, self.examples, self.num_threads)
+        results = common.map_with_progress(fn, self.examples, self.num_threads, self.deterministic)
         return common.aggregate_results(results)
