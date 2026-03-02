@@ -326,53 +326,7 @@ def map_with_progress(f: callable, xs: List[Any], num_threads: int, deterministi
     When deterministic=True, use sequential processing for reproducible results.
     """
     if deterministic or os.getenv("debug"):
-        # Check if async with delay is requested via environment variable
-        use_async_delay = os.getenv("ASYNC_DETERMINISTIC", "true").lower() == "true"
-        delay_seconds = float(os.getenv("DETERMINISTIC_DELAY", "1.0"))
-
-        if use_async_delay:
-            import time
-            from concurrent.futures import ThreadPoolExecutor, as_completed
-
-            def delayed_f(indexed_item):
-                """Execute function with staggered delay based on index"""
-                idx, item = indexed_item
-                # Wait for the scheduled time (index * delay_seconds)
-                time.sleep(idx * delay_seconds)
-                result = f(item)
-                return idx, result
-
-            # Create indexed items and submit with delays
-            indexed_items = list(enumerate(xs))
-            results = [None] * len(xs)  # Pre-allocate results array
-
-            with ThreadPoolExecutor(max_workers=min(num_threads, len(xs))) as executor:
-                # Submit all tasks immediately (they will delay internally)
-                future_to_idx = {
-                    executor.submit(delayed_f, item): item[0]
-                    for item in indexed_items
-                }
-
-                # Collect results as they complete
-                with tqdm(total=len(xs), desc=f"Async processing (staggered by {delay_seconds}s)") as pbar:
-                    for future in as_completed(future_to_idx):
-                        idx, result = future.result()
-                        results[idx] = result
-                        pbar.update(1)
-
-            return results
-
-        elif delay_seconds > 0:
-            import time
-            results = []
-            for item in tqdm(xs, total=len(xs), desc=f"Sequential with {delay_seconds}s delays"):
-                result = f(item)
-                results.append(result)
-                time.sleep(delay_seconds)
-            return results
-        else:
-            # Default: pure sequential without delays
-            return list(map(f, tqdm(xs, total=len(xs))))
+        return list(map(f, tqdm(xs, total=len(xs))))
     else:
         with ThreadPool(min(num_threads, len(xs))) as pool:
             return list(tqdm(pool.imap(f, xs), total=len(xs)))
