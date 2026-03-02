@@ -202,7 +202,14 @@ def parse_args(argv: Optional[Sequence[str]] = None) -> argparse.Namespace:
     parser.add_argument(
         "--deterministic",
         action="store_true",
-        help="Enable deterministic evaluation mode (sequential processing for reproducible results).",
+        default=True,
+        help="Enable deterministic evaluation mode (sequential processing for reproducible results). Default: True.",
+    )
+    parser.add_argument(
+        "--non-deterministic",
+        action="store_false",
+        dest="deterministic",
+        help="Disable deterministic mode to enable parallel processing for faster evaluation.",
     )
     parser.add_argument(
         "--artifacts-root",

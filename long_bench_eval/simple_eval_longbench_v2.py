@@ -123,7 +123,7 @@ class LongBenchV2Eval(Eval):
         categories: Optional[List[str]] = None,
         max_context_length: Optional[int] = None,
         min_context_length: Optional[int] = None,
-        deterministic: bool = False,
+        deterministic: bool = True,
     ):
         """
         Initialize LongBench-v2 evaluation.
@@ -136,7 +136,7 @@ class LongBenchV2Eval(Eval):
             categories: List of task categories to include (None for all)
             max_context_length: Maximum context length in characters
             min_context_length: Minimum context length in characters
-            deterministic: Enable deterministic evaluation mode (sequential processing)
+            deterministic: Enable deterministic evaluation mode (sequential processing). Default: True.
         """
         self.tokenizer = None
         if model and (min_context_length is not None or max_context_length is not None):

@@ -21,13 +21,22 @@ pip install git+https://github.com/yiliu30/long-bench-eval
 
 **Command Line Interface:**
 ```bash
-# Basic evaluation with local inference server
+# Basic evaluation with local inference server (deterministic by default)
 python -m long_bench_eval.cli \
     --model MODEL_NAME \
     --base-url http://localhost:30000/v1 \
     --api-key dummy \
     --max-context-length 40000 \
     --num-examples 50
+
+# Enable parallel processing for faster evaluation
+python -m long_bench_eval.cli \
+    --model MODEL_NAME \
+    --base-url http://localhost:30000/v1 \
+    --api-key dummy \
+    --max-context-length 40000 \
+    --num-examples 50 \
+    --non-deterministic
 
 # Using compatibility shim from scripts/
 python scripts/run_deepseek_longbench_eval.py --model MODEL_NAME
